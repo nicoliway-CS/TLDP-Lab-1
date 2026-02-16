@@ -14,19 +14,18 @@ Hints:
 - Double‑check typos in file names and variables
 """
 
-# TODO: Import what you actually need (this line is intentionally incomplete)
-import requests
 
-API_URL = "https://catfact.ninja/fact"  # <-- Is this the correct endpoint for a single random fact?
+import requests #changed it from json to requests
+
+#wrong endpoint, this one returns a random fact instead of a list of facts
+API_URL = "https://catfact.ninja/fact"  
 
 def get_cat_fact():
     """Fetch a single cat fact string from the API and return it."""
-    # NOTE: There may be a few bugs below. Read errors carefully!
-    resp = requests.get(API_URL, timeout=5)  # BUG: timeout type? also missing import above
+    
+    resp = requests.get(API_URL, timeout=5)  #changed the timeout from a string to an integer
     data = resp.json()
 
-    # Expecting the payload to contain the fact text at data["fact"]
-    # (Verify with docs! If the endpoint returns a list, this will fail.)
     fact = data["fact"]
 
     return fact
@@ -34,14 +33,14 @@ def get_cat_fact():
 def save_fact_to_file(text):
     """Save the provided text to data/cat_fact.txt"""
     out_path = "data/cat_fact.txt"
-    # If the folder doesn't exist, this will fail.
+    #created the data folder
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(text)
-    print("Saved to cat_fact.txt")  # BUG: filename typo
+    print("Saved to cat_fact.txt")  #added the extra t to make txt
 
 def main():
     fact = get_cat_fact()
-    # Add a simple guard so we don't write None/empty strings
+    #added 2 extra conditionals in the if statement
     if fact and isinstance(fact, str) and fact != None and len(fact) != 0:
         save_fact_to_file(fact)
     else:
