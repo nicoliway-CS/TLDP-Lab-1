@@ -25,4 +25,4 @@ This repository contains two Python command-line scripts:
    - Calories per 100g  
 4. Displays this information in the terminal.
 
-### ▶️ Example
+
